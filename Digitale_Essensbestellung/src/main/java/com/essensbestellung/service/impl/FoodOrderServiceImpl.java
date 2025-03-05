@@ -2,6 +2,7 @@ package com.essensbestellung.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -112,13 +113,13 @@ public class FoodOrderServiceImpl implements IFoodOrderService{
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
         LocalDateTime now = LocalDateTime.now();
-  /*      LocalTime cutoffTime = LocalTime.of(8, 0);
+        LocalTime cutoffTime = LocalTime.of(8, 0);
 
         if (now.toLocalTime().isAfter(cutoffTime)) 
         {
-            throw new RuntimeException("Bestellaktualisierungen können nach 08:00 Uhr nicht mehr vorgenommen werden");
+            throw new RuntimeException("Order updates cannot be made after 8:00 AM");
         }
- */
+ 
         existingOrder.setMealtype(updateOrder.getMealtype());
 		existingOrder.setWith_salad(updateOrder.isWith_salad());
         existingOrder.setStatus(OrderStatus.GEAENDERT);
