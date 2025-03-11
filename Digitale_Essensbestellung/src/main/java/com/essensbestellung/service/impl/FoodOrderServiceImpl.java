@@ -121,8 +121,10 @@ public class FoodOrderServiceImpl implements IFoodOrderService{
         }
  
         existingOrder.setMealtype(updateOrder.getMealtype());
-		existingOrder.setWith_salad(updateOrder.isWith_salad());
-        existingOrder.setStatus(OrderStatus.GEAENDERT);
+	existingOrder.setWith_salad(updateOrder.isWith_salad());
+	if (updateOrder.getStatus() != null) {
+	        existingOrder.setStatus(updateOrder.getStatus());
+	}
         existingOrder.setLast_changed(LocalDateTime.now());
 
         return orderRepository.save(existingOrder);
